@@ -15,7 +15,6 @@
             </div>
         </div>
     </div>
-
     <form action="{{ route('dashboard.buscar') }}" method="POST">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -38,6 +37,8 @@
         </div>
     </form>
 
+
+<!--muestra la informacion de los registros almacendos en las tablas de base de datos-->
     @if(isset($resultados))
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -54,6 +55,9 @@
                                         {{ ucfirst($key) }}
                                     </th>
                                     @endforeach
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Acción
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
@@ -64,12 +68,18 @@
                                         {{ $value }}
                                     </td>
                                     @endforeach
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <!-- Botón para realizar una acción específica con el registro -->
+                                        <a href="{{ route('registro.edit', ['tabla' => $nombreTabla, 'id' => $resultado->id]) }}" class="text-blue-600 hover:text-blue-900">
+                                            <x-primary-button>{{ __('Editar') }}</x-primary-button>
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         @else
-                        <p>No se encontraron resultados en la tabla {{ $tablas_sistema->nombre_tabla }}</p>
+                        <p>No se encontraron resultados en la tabla {{ $nombreTabla }}</p>
                         @endif
                     </div>
                 </div>
@@ -78,10 +88,12 @@
     </div>
     @endif
 
+
+
+
     <script>
         document.getElementById('clearButton').addEventListener('click', function() {
-            // Redirigir a la ruta que carga la vista inicial con un parámetro de consulta
-            //recarga la pagina y la deja limpia importante
+            //window.location.reload(); 
             window.location.href = "{{ route('dashboard') }}?clear=true";
         });
     </script>

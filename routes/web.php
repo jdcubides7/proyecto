@@ -3,11 +3,17 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Tablas_Sistema;
+use App\Http\Controllers\EditarRegistroController;
+
 
 use Illuminate\Facades\DB; // Import DB Facade
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 //use IlluminateSupportFacadesRoute;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +38,9 @@ Route::get('/seccion-inicio', 'App\Http\Controllers\ConnectController@getSeccion
 Route::get('/registro', 'App\Http\Controllers\ConnectController@getRegistro')->name('registro'); //3 registro
 
 //ruta creada para el dashboard
+
+
+
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->middleware(['auth', 'verified'])->name('dashboard');
 
 //ruta creada para retornar busqueda
@@ -46,6 +55,10 @@ Route::post('/dashboard/buscar', 'App\Http\Controllers\DashboardController@busca
 //})->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::get('/editar-registro/{id}','App\Http\Controllers\DashboardController@editar-registro')->name('editar-registro');
+
+
+
 //2 para retornar consultas a la db
 
 
@@ -58,3 +71,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+//
+
+//
+//Route::get('/registro/{id}/edit', [RegistroController::class, 'edit'])->name('registro.edit');
+//
+//Route::put('/registro/{id}', [RegistroController::class, 'update'])->name('registro.update');
+
+
+
+Route::get('dashboard/editar-registros/{tabla}/{id}/edit', [EditarRegistroController::class, 'edit'])->name('registro.edit');
+Route::put('dashboard/editar-registros/{tabla}/{id}', [EditarRegistroController::class, 'update'])->name('registro.update');
