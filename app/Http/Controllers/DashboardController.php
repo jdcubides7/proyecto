@@ -11,7 +11,28 @@ class DashboardController extends Controller
   // Método para mostrar la vista inicial con los datos
   public function index()
   {
-	  //retorna la vista con la informacion de las tablas que hay en base de datos
+
+    $idUsuario = auth()->id();
+    $nombreUsuario = DB::table('users')->where('id', $idUsuario)->value('name');
+    $correo = DB::table('users')->where('id', $idUsuario)->value('email');
+    $contraseña = DB::table('users')->where('id', $idUsuario)->value('password');
+
+    //$registroExistente = DB::table('autenticacion_usuarios')->where('id', $idUsuario);
+    //$ultimoId = DB::table('autenticacion_usuarios')->max('id');
+    //$nuevoId = $ultimoId ? $ultimoId + 1 : 1;
+//
+    //DB::table('autenticacion_usuarios')->insert([
+    //  'id' => $nuevoId,
+    //  'id_usuario' => $idUsuario,
+    //  'nombre' => $nombreUsuario,
+    //  'correo' => $correo,
+    //  'contraseña' => $contraseña,
+    //  'created_at' => now(),
+    //  'updated_at' => now()
+    //]);
+
+
+    //retorna la vista con la informacion de las tablas que hay en base de datos
     $datos = Tablas_Sistema::all();
     return view('dashboard', compact('datos'));
   }

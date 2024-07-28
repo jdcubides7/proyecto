@@ -22,22 +22,22 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="container">
-                    <h1>Formulario de actualizacion de registros de la tabla {{ ucfirst($tabla) }}</h1>
-                    <form action="{{ route('registro.update', ['tabla' => $tabla, 'id' => $registro->id]) }}" method="POST">
+                    <h1>Formulario de insercion de registros de la tabla {{ ucfirst($tabla) }}</h1>
+                    <form action="{{ route('registro.InsertTableDB', ['tabla' => $tabla]) }}" method="POST">
                         @csrf
-                        @method('PUT')
-                        @foreach((array) $registro as $campo => $valor)
+                        @foreach((array) $campos as $campo)
                         <div class="mb-3">
                             <label for="{{ $campo }}" class="form-label">{{ ucfirst($campo) }}:</label>
-                            <input type="text" class="form-control" id="{{ $campo }}" name="{{ $campo }}" value="{{ $valor }}">
+                            <input type="text" class="form-control" id="{{ $campo }}" name="{{ $campo }}" value="{{ $registro->$campo ?? '' }}">
                         </div>
                         @endforeach
                         <x-primary-button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                            {{ __('Guardar Cambios') }}
+                            {{ __('Insertar') }}
                         </x-primary-button>
                         <x-primary-button id="atrasButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             {{ __('Atras') }}
                         </x-primary-button>
+
                     </form>
                 </div>
             </div>

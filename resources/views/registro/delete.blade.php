@@ -22,10 +22,10 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="container">
-                    <h1>Formulario de actualizacion de registros de la tabla {{ ucfirst($tabla) }}</h1>
-                    <form action="{{ route('registro.update', ['tabla' => $tabla, 'id' => $registro->id]) }}" method="POST">
+                    <h1>Formulario de eliminacion de registros de la tabla {{ ucfirst($tabla) }}</h1>
+                    <form action="{{ route('registro.destroy', ['tabla' => $tabla, 'id' => $registro->id]) }}" method="POST">
                         @csrf
-                        @method('PUT')
+                        @method('DELETE')
                         @foreach((array) $registro as $campo => $valor)
                         <div class="mb-3">
                             <label for="{{ $campo }}" class="form-label">{{ ucfirst($campo) }}:</label>
@@ -33,8 +33,9 @@
                         </div>
                         @endforeach
                         <x-primary-button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                            {{ __('Guardar Cambios') }}
+                            {{ __('Eliminar') }}
                         </x-primary-button>
+                        <!--mirar como funciona boton atras-->
                         <x-primary-button id="atrasButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                             {{ __('Atras') }}
                         </x-primary-button>
@@ -43,10 +44,12 @@
             </div>
         </div>
     </div>
-    <script>
+
+<script>
         document.getElementById('atrasButton').addEventListener('click', function() {
             // Redirige a la página anterior en el historial del navegador
             window.history.back();
         });
     </script>
+    
 </x-app-layout>

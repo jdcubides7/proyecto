@@ -32,9 +32,7 @@ Route::get('/', function () {
 
 //1 para retornar view login validar siempre la ruta \
 Route::get('/ingreso', 'App\Http\Controllers\ConnectController@getIngreso')->name('ingreso'); //1pagina login
-
 Route::get('/seccion-inicio', 'App\Http\Controllers\ConnectController@getSeccionInicio')->name('seccionInicio'); //2pagina inicio
-
 Route::get('/registro', 'App\Http\Controllers\ConnectController@getRegistro')->name('registro'); //3 registro
 
 //ruta creada para el dashboard
@@ -42,9 +40,6 @@ Route::get('/registro', 'App\Http\Controllers\ConnectController@getRegistro')->n
 
 
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->middleware(['auth', 'verified'])->name('dashboard');
-
-//ruta creada para retornar busqueda
-
 Route::post('/dashboard/buscar', 'App\Http\Controllers\DashboardController@buscar')->middleware(['auth', 'verified'])->name('dashboard.buscar');
 
 
@@ -60,16 +55,11 @@ Route::get('/editar-registro/{id}','App\Http\Controllers\DashboardController@edi
 
 
 //2 para retornar consultas a la db
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';
 //
 
@@ -78,7 +68,13 @@ require __DIR__.'/auth.php';
 //
 //Route::put('/registro/{id}', [RegistroController::class, 'update'])->name('registro.update');
 
+//#############Vistas para eliminar registros según la tabla de base de datos seleccionada
+Route::get('dashboard/editar-registros/{tabla}/{id}/edit', [EditarRegistroController::class, 'edit'])->middleware(['auth', 'verified'])->name('registro.edit');
+Route::put('dashboard/editar-registros/{tabla}/{id}', [EditarRegistroController::class, 'update'])->middleware(['auth', 'verified'])->name('registro.update');
+//#############Vistas para borrar registros según la tabla de base de datos seleccionada
+Route::get('dashboard/borrar-registro/{tabla}/{id}',[EditarRegistroController::class,'show'])->middleware(['auth', 'verified'])->name('registro.show');
+Route::delete('dashboard/borrar-registro/{tabla}/{id}',[EditarRegistroController::class,'destroy'])->middleware(['auth', 'verified'])->name('registro.destroy');
 
-
-Route::get('dashboard/editar-registros/{tabla}/{id}/edit', [EditarRegistroController::class, 'edit'])->name('registro.edit');
-Route::put('dashboard/editar-registros/{tabla}/{id}', [EditarRegistroController::class, 'update'])->name('registro.update');
+//#############Vistas para insertar registros según la tabla de base de datos seleccionada
+Route::get('dashboard/insertar-registro/{tabla}',[EditarRegistroController::class,'InsertTable'])->middleware(['auth', 'verified'])->name('registro.InsertTable');
+Route::post('dashboard/insertar-registro/{tabla}',[EditarRegistroController::class,'InsertTableBD'])->middleware(['auth', 'verified'])->name('registro.InsertTableDB');

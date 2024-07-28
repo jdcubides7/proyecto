@@ -196,3 +196,28 @@ background-color #f6f6f6 {
       background-color: #f6f68f;
   }
   /*dashboard*/
+
+
+  .table-container {
+    width: 100%; /* Ajusta al ancho del contenedor padre */
+    max-height: 700px; /* Altura fija para la tabla */
+    overflow-y: auto; /* Habilita el scroll vertical si el contenido es mayor */
+    border: 1px solid #ddd; /* Borde para la tabla */
+    border-radius: 4px; /* Esquinas redondeadas opcional */
+}
+
+.fixed-table {
+    width: 100%;
+    border-collapse: collapse; /* Fusiona los bordes de las celdas */
+}
+
+.fixed-table th,
+.fixed-table td {
+    border: 1px solid #ddd; /* Borde de las celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+}
+
+.fixed-table thead th {
+    background-color: #85b674; /* Color de fondo para las cabeceras */
+}
