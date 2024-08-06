@@ -26,11 +26,34 @@ return new class extends Migration
         });
 
         DB::table('tablas_sistema')->insert([
-            ['nombre_tabla' => 'autenticacion_usuarios','created_at' => now(),'updated_at' => now()],
-            ['nombre_tabla' => 'productos','created_at' => now(),'updated_at' => now()],
-            ['nombre_tabla' => 'registros','created_at' => now(),'updated_at' => now()],
-            ['nombre_tabla' => 'tablas_sistema','created_at' => now(),'updated_at' => now()],
-            ['nombre_tabla' => 'users','created_at' => now(),'updated_at' => now()],
+            ['nombre_tabla' => 'autenticacion_usuarios', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'productos', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'registros', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'tablas_sistema', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'users', 'created_at' => now(), 'updated_at' => now()],
+//
+            ['nombre_tabla' => 'proveedores', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'categorias', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'productos', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'inventario', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'ordenes_compra', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'ordenes_compra', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'detalle_orden_compra', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'ventas', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'detalle_venta', 'created_at' => now(), 'updated_at' => now()],
+            ['nombre_tabla' => 'ajustes_inventario', 'created_at' => now(), 'updated_at' => now()],
+            // ajustes
+
+            ['nombre_tabla' => 'clientes','created_at' => now(),'updated_at' => now()],
+            ['nombre_tabla' => 'tipos_documento','created_at' => now(),'updated_at' => now()],
+
+
+
+
+
+
+
+
             // Añade más registros si es necesario
         ]);
     }

@@ -88,7 +88,7 @@ background-color #f6f6f6 {
 
 
   .form-register {
-    width: 525px;
+    width: 600px;
     background: #199319;
     padding: 30px;
     margin: auto;
@@ -221,3 +221,24 @@ background-color #f6f6f6 {
 .fixed-table thead th {
     background-color: #85b674; /* Color de fondo para las cabeceras */
 }
+
+a{
+color: black;
+}
+
+a:hover{
+color: red;
+}
+
+a:active{
+color: blue;
+}
+
+/*para ver desabilitados los campos que no se pueden editar*/
+.readonly-like-disabled {
+    background-color: #e9ecef; /* Color de fondo similar a los campos deshabilitados */
+    cursor: not-allowed; /* Cambia el cursor para indicar que el campo no es editable */
+    color: #6c757d; /* Color del texto similar al de los campos deshabilitados */
+    border-color: #ced4da; /* Color del borde similar al de los campos deshabilitados */
+}
+

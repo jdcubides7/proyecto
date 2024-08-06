@@ -7,7 +7,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -16,6 +16,17 @@
             </div>
         </div>
     </div>
+
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a class="color-link" href="{{route ('registro-ventas.registrarVentas')}}">Registro de ventas RestSoft</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <form action="{{ route('dashboard.buscar') }}" method="POST">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -31,9 +42,9 @@
                         <option value="{{ $tablas_sistema->id }}">{{ $tablas_sistema->nombre_tabla }}</option>
                         @endforeach
                     </select>
-                    <x-primary-button>{{ __('Buscar') }}</x-primary-button>
-                    <x-primary-button type="button" id="clearButton">{{ __('Limpiar') }}</x-primary-button>
-                    <x-primary-button type="button" id="insertButton">{{ __('Insertar') }}</x-primary-button>
+                    <x-primary-button class="btn-buscar"> {{ __('Buscar') }}</x-primary-button>
+                    <x-primary-button class="btn-limpiar" type="button" id="clearButton">{{ __('Limpiar') }}</x-primary-button>
+                    <x-primary-button class="btn-insertar" type="button" id="insertButton">{{ __('Insertar') }}</x-primary-button>
 
 
 
@@ -111,19 +122,19 @@
     </script>
 
 
-<script>
-    document.getElementById('insertButton').addEventListener('click', function() {
-        var selectElement = document.getElementById('tablas');
-        var selectedTable = selectElement.options[selectElement.selectedIndex].text;
-        if (selectedTable) {
-            var url = "{{ route('registro.InsertTable', ['tabla' => ':tabla']) }}";
-            url = url.replace(':tabla', selectedTable);
-            window.location.href = url;
-        } //else {
+    <script>
+        document.getElementById('insertButton').addEventListener('click', function() {
+            var selectElement = document.getElementById('tablas');
+            var selectedTable = selectElement.options[selectElement.selectedIndex].text;
+            if (selectedTable) {
+                var url = "{{ route('registro.InsertTable', ['tabla' => ':tabla']) }}";
+                url = url.replace(':tabla', selectedTable);
+                window.location.href = url;
+            } //else {
             //alert('Por favor, selecciona una tabla.');
-        //}
-    });
-</script>
+            //}
+        });
+    </script>
 
 
 </x-app-layout>

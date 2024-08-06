@@ -17,19 +17,19 @@ class DashboardController extends Controller
     $correo = DB::table('users')->where('id', $idUsuario)->value('email');
     $contraseña = DB::table('users')->where('id', $idUsuario)->value('password');
 
-    //$registroExistente = DB::table('autenticacion_usuarios')->where('id', $idUsuario);
-    //$ultimoId = DB::table('autenticacion_usuarios')->max('id');
-    //$nuevoId = $ultimoId ? $ultimoId + 1 : 1;
+   // $registroExistente = DB::table('autenticacion_usuarios')->where('id', $idUsuario);
+   // $ultimoId = DB::table('autenticacion_usuarios')->max('id');
+   // $nuevoId = $ultimoId ? $ultimoId + 1 : 1;
 //
-    //DB::table('autenticacion_usuarios')->insert([
-    //  'id' => $nuevoId,
-    //  'id_usuario' => $idUsuario,
-    //  'nombre' => $nombreUsuario,
-    //  'correo' => $correo,
-    //  'contraseña' => $contraseña,
-    //  'created_at' => now(),
-    //  'updated_at' => now()
-    //]);
+  //  DB::table('autenticacion_usuarios')->insert([
+  //    'id' => $nuevoId,
+  //    'id_usuario' => $idUsuario,
+  //    'nombre' => $nombreUsuario,
+  //    'correo' => $correo,
+  //    'contraseña' => $contraseña,
+  //    'created_at' => now(),
+  //    'updated_at' => now()
+  //  ]);
 
 
     //retorna la vista con la informacion de las tablas que hay en base de datos
@@ -37,6 +37,8 @@ class DashboardController extends Controller
     return view('dashboard', compact('datos'));
   }
 
+
+  //metodo para buscar general
   public function buscar(Request $request)
   {
     $request->validate([
@@ -60,7 +62,8 @@ class DashboardController extends Controller
     $nombreTabla = Tablas_Sistema::where('id', $tablaId)->value('nombre_tabla');
 
     // Validar el nombre de la tabla (para evitar SQL injection)
-    if (!in_array($nombreTabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos'])) { // tablas permitidas
+    if (!in_array($nombreTabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos','proveedores',
+    'categorias','inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'])) { // tablas permitidas
       return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
     }
 
@@ -81,7 +84,9 @@ class DashboardController extends Controller
   //}
   //
 
-
+public function registrarVentas(){
+  return view('registro-ventas.registro-ventas');
+}
 
 
 }

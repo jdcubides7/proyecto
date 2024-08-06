@@ -37,6 +37,7 @@
                 <div class="mt-4">
                     <x-input-label for="password" :value="__('Ingrese Contraseña:')" />
                     <x-text-input class="input-2" id="password" type="password" name="password" placeholder="Ingrese su Contraseña" required autocomplete="current-password" />
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
                 <!--
@@ -66,6 +67,16 @@
                 </div>
             </form>
         </div>
+        <script>
+            function togglePassword() {
+                const passwordField = document.getElementById('password');
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+
+                const toggleIcon = document.querySelector('.toggle-password');
+                toggleIcon.textContent = type === 'password' ? '👁️' : '🙈';
+            }
+        </script>
     </body>
 </div>
 @stop
