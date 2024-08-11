@@ -246,3 +246,26 @@ color: blue;
 
 }   
 
+/* Estilos para el botón con el ID "addProductButton" */
+#addProductButton {
+    background-color: #2855a7; /* Color de fondo verde (o el color que prefieras) */
+    color: #fff; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    /*justify-content: flex-end; /* Alinea el contenido hacia la derecha */
+    justify-content: flex-start;
+}
+
+
+#addProductButton:hover {
+    background-color: #218838; /* Color de fondo cuando se pasa el ratón (efecto hover) */
+}

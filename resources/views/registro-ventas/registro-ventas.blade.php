@@ -23,7 +23,7 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="container">
                     <h1 class="text-capitalize">Modulo de registro de ventas restsoft</h1>
-                    <form action="" method="#">
+                    <form action="{{ route('registro-ventas.store') }}" method="POST">
                         @csrf
 
                         <div class="row">
@@ -99,7 +99,17 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="button" id="addProductButton" class="btn btn-success">Agregar Producto</button>
+                            <div class="button-container">
+                                <button type="button" id="addProductButton" class="btn btn-success">Agregar Producto</button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="total_venta" class="form-label">Total Venta</label>
+                                    <input type="text" class="form-control readonly-like-disabled" id="total_venta" name="total_venta" readonly>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="mb-3">
@@ -125,6 +135,8 @@
         });
     </script>
 
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Función para inicializar los eventos en una fila de producto
@@ -140,6 +152,17 @@
                     const precio = parseFloat(inputElementPrecio.value) || 0;
                     const valorTotal = cantidad * precio;
                     valorTotalInput.value = valorTotal.toFixed(2);
+                    actualizarTotalVenta();
+                }
+
+                function actualizarTotalVenta() {
+                    const filas = document.querySelectorAll('#productosTable tbody .producto-row');
+                    let totalVenta = 0;
+                    filas.forEach(fila => {
+                        const valorTotal = parseFloat(fila.querySelector('.valor_total_productos').value) || 0;
+                        totalVenta += valorTotal;
+                    });
+                    document.getElementById('total_venta').value = totalVenta.toFixed(2);
                 }
 
                 selectElement.addEventListener('change', function() {
@@ -169,24 +192,46 @@
                 deleteButton.addEventListener('click', function() {
                     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
                         row.remove(); // Elimina la fila completa solo de la tabla
+                        actualizarTotalVenta();
+                        const productosTable = document.getElementById('productosTable').querySelector('tbody');
+
+                        // Verifica si se eliminaron todas las filas
+                        if (productosTable.rows.length === 0) {
+                            // Restaurar la tabla a su estado original si está vacía
+                            const emptyRow = document.createElement('tr');
+                            emptyRow.className = 'producto-row producto-row-template'; // Reagrega la clase que se necesita para agregar más productos
+                            emptyRow.innerHTML = productoRow.innerHTML; // Restablece el contenido HTML
+                            productosTable.appendChild(emptyRow);
+
+                            initializeProductRow(emptyRow);
+                        }
                     }
                 });
                 row.appendChild(deleteButton);
             }
-            
+
+
+            // Función para actualizar el total de la venta
+
+
 
             // Inicializar la primera fila de producto
-            const initialProductRow = document.querySelector('.producto-row');
-            if (initialProductRow) {
-                initializeProductRow(initialProductRow);
+            const productoRow = document.querySelector('.producto-row');
+            if (productoRow) {
+                initializeProductRow(productoRow);
             }
 
             // Función para agregar una nueva fila de producto
             document.getElementById('addProductButton').addEventListener('click', function() {
                 const productosTable = document.getElementById('productosTable').querySelector('tbody');
-                const productoRow = document.querySelector('.producto-row');
+
+                // Si no hay filas en la tabla (tabla vacía), reinicia el cuerpo de la tabla
+                if (productosTable.rows.length === 0) {
+                    productosTable.innerHTML = ''; // Asegúrate de que no haya restos de filas
+                }
 
                 const newProductRow = productoRow.cloneNode(true);
+                newProductRow.classList.remove('producto-row-template'); // Remueve la clase de plantilla
 
                 // Limpiar los campos de la nueva fila
                 newProductRow.querySelectorAll('input').forEach(function(input) {
@@ -200,10 +245,13 @@
 
                 productosTable.appendChild(newProductRow);
                 initializeProductRow(newProductRow);
+
+                actualizarTotalVenta();
             });
+
+            actualizarTotalVenta();
         });
     </script>
-
 
 
     <div><br></div>

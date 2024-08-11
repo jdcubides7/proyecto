@@ -125,7 +125,7 @@ class EditarRegistroController extends Controller
         }
         $campos = DB::getSchemaBuilder()->getColumnListing($tabla);
 
-        $idTablaInsertar = DB::table($tabla)->where('1=2');
+      //  $idTablaInsertar = DB::table($tabla)->where('1=2');
         return view('registro.insert', compact('campos', 'tabla'));
     }
 

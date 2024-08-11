@@ -75,4 +75,12 @@ require __DIR__.'/auth.php';
 
 //##PARA LA SECCION DE VENTAS################################################################################################
 
-Route::get ('dashboard/registrar-ventas',[VentasController::class,'registrarVentas'])->middleware(['auth','verified'])->name('registro-ventas.registrarVentas');
+// Ruta para mostrar el formulario
+Route::get('dashboard/registrar-ventas', [VentasController::class, 'registrarVentas'])
+    ->middleware(['auth', 'verified'])
+    ->name('registro-ventas.registrarVentas');
+
+// Ruta para manejar el almacenamiento de los datos del formulario
+Route::post('dashboard/registrar-ventas', [VentasController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('registro-ventas.store');
