@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cliente_nombre" class="form-label">Nombres y Apellidos del cliente</label>
-                                <input type="text" class="form-control" id="cliente_nombre" name="cliente_nombre" value="">
+                                <input type="text" class="form-control" id="cliente_nombre" name="cliente_nombre" value="" required>
                             </div>
                         </div>
 
@@ -48,18 +48,18 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="numero_documento" class="form-label">Número documento identidad</label>
-                                <input type="text" class="form-control" id="numero_documento" name="numero_documento" value="">
+                                <input type="text" class="form-control" id="numero_documento" name="numero_documento" value="" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="telefono_cliente" class="form-label">Teléfono cliente</label>
-                                <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="">
+                                <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="direccion_cliente" class="form-label">Dirección cliente</label>
-                                <input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente" value="">
+                                <input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente" value="" required>
                             </div>
                         </div>
 
@@ -99,16 +99,20 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="button-container">
-                                <button type="button" id="addProductButton" class="btn btn-success">Agregar Producto</button>
+                            <div class="container-s-s">
+                                <div class="button-container">
+                                    <button type="button" id="addProductButton" class="btn btn-success">Agregar Producto</button>
+                                </div>
+
+                                <div class="input-container col-md-3 mb-3">
+                                    <label for="total_venta" class="form-label">Total Venta</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control readonly-like-disabled" id="total_venta" name="total_venta" readonly>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="total_venta" class="form-label">Total Venta</label>
-                                    <input type="text" class="form-control readonly-like-disabled" id="total_venta" name="total_venta" readonly>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -116,7 +120,7 @@
                             <x-primary-button type="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                 {{ __('Limpiar') }}
                             </x-primary-button>
-                            <x-primary-button type="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            <x-primary-button id="registerSaleButton" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                 {{ __('Registrar Venta') }}
                             </x-primary-button>
                             <x-primary-button id="atrasButton" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -131,7 +135,18 @@
 
     <script>
         document.getElementById('atrasButton').addEventListener('click', function() {
-            window.history.back();
+            //window.history.back();
+            window.location.href = '/dashboard';
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('registerSaleButton').addEventListener('click', function(event) {
+                if (!confirm('¿Estás seguro de que quieres registrar la venta?')) {
+                    event.preventDefault(); // Previene el envío del formulario si se cancela
+                }
+                // Si el usuario confirma, no hacemos nada más, el formulario se enviará
+            });
         });
     </script>
 

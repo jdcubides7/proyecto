@@ -8,6 +8,8 @@ use App\Models\Tipos_Documento;
 use App\Models\Productos;
 use App\Models\Detalle_Venta;
 use Illuminate\Support\Facades\DB;
+use Exception;
+
 
 class VentasController extends Controller
 {
@@ -31,7 +33,7 @@ class VentasController extends Controller
 
         $validated = $request->validate([
             'cliente_nombre' => 'required|string',
-            'tipo_documento_id' => 'required|exists:tipos_documento,id',
+            'tipo_documento_id' => 'required|exists:tipo_documento,id',
             'numero_documento' => 'required|string',
             'telefono_cliente' => 'nullable|string',
             'direccion_cliente' => 'nullable|string',
@@ -43,7 +45,7 @@ class VentasController extends Controller
         ]);
 
         // Obtén el nombre del tipo de documento por su ID
-        $nombreDocumentoIdentidad = DB::table('tipos_documento')
+        $nombreDocumentoIdentidad = DB::table('tipo_documento')
             ->where('id', $validated['tipo_documento_id'])
             ->value('nombre');
 
@@ -66,18 +68,38 @@ class VentasController extends Controller
         $totalVenta = 0;
 
 
+
+
+
+
+
         foreach ($validated['productos'] as $producto) {
+            // Buscar el nombre del producto
+            $nombreProducto = DB::table('productos')
+                ->where('id', $producto['id'])  // Aquí accedes al id específico del producto
+                ->value('nombre');
+
+            // Verificar si el nombre del producto fue encontrado
+            if (!$nombreProducto) {
+                throw new Exception("Producto con ID {$producto['id']} no encontrado.");
+            }
+
+            // Inyectar el nombre del producto en la tabla Detalle_Venta
             Detalle_Venta::create([
                 'venta_id' => $venta->id,
                 'producto_id' => $producto['id'],
+                'producto_comprado' => $nombreProducto,
                 'cantidad' => $producto['cantidad'],
                 'precio_unitario' => $producto['precio'],
                 'total' => $producto['total'],
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+
             $totalVenta += $producto['total'];
         }
+
+
 
         $venta->update(['total_venta' => $totalVenta]);
 
