@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Tablas_Sistema;
 use App\Http\Controllers\EditarRegistroController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\Inventario;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConnectController;
@@ -84,3 +85,12 @@ Route::get('dashboard/registrar-ventas', [VentasController::class, 'registrarVen
 Route::post('dashboard/registrar-ventas', [VentasController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('registro-ventas.store');
+
+//Ruta para cargar las categorias por medio de codigo ajax
+Route::get('/productos/categoria/{categoriaId}', [VentasController::class, 'getProductsByCategory']);
+
+//PARA LA SECCION DE INVENTARIO#############################################################################################
+
+Route::get('dashboard/inventarios', [Inventario::class, 'inventario'])
+    ->middleware(['auth', 'verified'])
+    ->name('registro-inventario.inventario');

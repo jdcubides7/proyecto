@@ -7,6 +7,7 @@ use App\Models\Ventas;
 use App\Models\Tipos_Documento;
 use App\Models\Productos;
 use App\Models\Detalle_Venta;
+use App\Models\Categoria_Producto;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -20,11 +21,15 @@ class VentasController extends Controller
         $idProducto = productos::all();
         $precioProducto = productos::all();
         $tiposDocumento = tipos_documento::all();
+        $nombreCategoria = categoria_producto::all();
+      //  $idCategoriaProducto = DB::table('productos')->value('categoria_id');
+       // $nombreCategoriaProducto = DB::table('categorias')->where('id', $idCategoriaProducto)->value('nombre');
         $ultimaVentaRegistrada = ventas::orderBy('id', 'desc')->first();
+
         $nextId = $ultimaVentaRegistrada ? $ultimaVentaRegistrada->id + 1 : 1;
 
 
-        return view('registro-ventas.registro-ventas', compact('nextId', 'tiposDocumento', 'idProducto', 'precioProducto'));
+        return view('registro-ventas.registro-ventas', compact('nextId', 'tiposDocumento', 'idProducto', 'precioProducto', 'nombreCategoria'));
     }
 
 
@@ -105,4 +110,22 @@ class VentasController extends Controller
 
         return redirect()->route('registro-ventas.registrarVentas')->with('success', 'Venta registrada con éxito');
     }
+
+
+
+    public function getProductsByCategory($categoriaId)
+{
+    // Obtener los productos filtrados por la categoría
+    $productos = Productos::where('categoria_id', $categoriaId)->get(['id', 'nombre', 'precio']);
+
+    // Retornar los productos en formato JSON para el uso en JavaScript
+    return response()->json($productos);
+}
+
+
+
+
+
+
+
 }

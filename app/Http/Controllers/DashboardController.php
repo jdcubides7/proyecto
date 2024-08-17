@@ -63,7 +63,7 @@ class DashboardController extends Controller
 
     // Validar el nombre de la tabla (para evitar SQL injection)
     if (!in_array($nombreTabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos','proveedores',
-    'categorias','inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'])) { // tablas permitidas
+    'categorias','inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario','tipo_documento'])) { // tablas permitidas
       return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
     }
 

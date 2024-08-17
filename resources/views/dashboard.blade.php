@@ -27,6 +27,17 @@
         </div>
     </div>
 
+
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a class="color-link" href="{{route ('registro-inventario.inventario')}}">Actualizacion de inventarios de RestSoft</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <form action="{{ route('dashboard.buscar') }}" method="POST">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -43,7 +54,7 @@
                         @endforeach
                     </select>
                     <x-primary-button class="btn-buscar"> {{ __('Buscar') }}</x-primary-button>
-                    <x-primary-button class="btn-limpiar" type="button" id="clearButton">{{ __('Limpiar') }}</x-primary-button>
+                    <x-primary-button class="btn-limpiar" type="button" id="clearButton" formnovalidate>{{ __('Limpiar') }}</x-primary-button>
                     <x-primary-button class="btn-insertar" type="button" id="insertButton">{{ __('Insertar') }}</x-primary-button>
 
 

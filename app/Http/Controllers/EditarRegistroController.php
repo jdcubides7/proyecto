@@ -18,7 +18,7 @@ class EditarRegistroController extends Controller
         //     return view('registro.edit', compact('registro'));
 
 
-        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'proveedores', 'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'])) {
+        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'proveedores', 'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario','tipo_documento'])) {
             return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
         }
 
@@ -35,7 +35,7 @@ class EditarRegistroController extends Controller
         //$registro->update($request->all());
         //return redirect()->route('dashboard')->with('success', 'Registro actualizado correctamente.');
         // Verificar que la tabla está permitida
-        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'proveedores', 'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'])) {
+        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'proveedores', 'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario','tipo_documento'])) {
             return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
         }
 
@@ -92,7 +92,7 @@ class EditarRegistroController extends Controller
 
     public function show($tabla, $id)
     {
-        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'categorias', 'inventario', 'proveedores','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'])) {
+        if (!in_array($tabla, ['registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'categorias', 'inventario', 'proveedores','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario','tipo_documento'])) {
             return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
         }
         $registro = DB::table($tabla)->find($id);
@@ -119,7 +119,7 @@ class EditarRegistroController extends Controller
     {
         if (!in_array($tabla, [
             'registros', 'users', 'tablas_sistema', 'autenticacion_usuarios', 'productos', 'proveedores',
-            'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario'
+        'categorias', 'inventario','ordenes_compra','detalle_orden_compra','ventas','detalle_venta','ajustes_inventario','tipo_documento'
         ])) {
             return redirect()->back()->withErrors(['error' => 'Tabla no permitida']);
         }
