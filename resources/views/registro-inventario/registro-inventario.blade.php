@@ -21,43 +21,27 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Actualizacion de inventario RestSoft</h1>
+                    <h1>Actualización de inventario RestSoft</h1>
                 </div>
             </div>
-            <table class="fixed-table">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
-
-                    <th>id
-                    </th>
-
-                    <th>id_categoria
-                    </th>
-
-                    <th>id_producto
-                    </th>
-
-                    <th>cantidad_disponible
-                    </th>
-
-                    <th>disponibilidad <!--disponible si o no -->
-                    </th>
-
-                    <th>fecha_creacion
-                    </th>
-
-                    <th>fecha_modificacion
-                    </th>
-
-                    <th>eliminar
-                    </th>
-
-                    <th>editar
-                    </th>
-
+                        <th>ID</th>
+                        <th>ID Categoría</th>
+                        <th>ID Producto</th>
+                        <th>Cantidad Disponible</th>
+                        <th>Disponibilidad</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                        <th>Editar</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <!-- Datos de la tabla aquí -->
+                </tbody>
             </table>
         </div>
-
     </div>
 
 </x-app-layout>

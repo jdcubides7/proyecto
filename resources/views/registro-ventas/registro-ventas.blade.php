@@ -196,6 +196,8 @@
                         fetch(`/productos/categoria/${categoriaId}`)
                             .then(response => response.json())
                             .then(productos => {
+                                //ver el .json en chrome en la consola 
+                                console.log(productos); 
                                 productos.forEach(producto => {
                                     const option = document.createElement('option');
                                     option.value = producto.id;

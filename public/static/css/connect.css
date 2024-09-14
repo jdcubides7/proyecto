@@ -28,7 +28,7 @@ background-color #f6f6f6 {
 }
 
 .btn-register:hover {    
-    color: blue;/*color hace referencia a la letra por deafult*/
+    color: red;/*color hace referencia a la letra por deafult*/
     background-color: #f6f68f;
 }
 
@@ -44,7 +44,7 @@ background-color #f6f6f6 {
   
 
   .btn-login:hover {     /*cuando se coloca el cursor encima del boton*/
-      color: blue;/*color hace referencia a la letra por deafult*/
+      color: red;/*color hace referencia a la letra por deafult*/
       background-color: #f6f68f;
   }
 
@@ -314,4 +314,60 @@ color: blue;
     padding-left: 30px; /* Deja espacio suficiente para el signo de pesos */
 }
 
+.text-white {
+    color :white;
+}
 
+
+.carousel-item-custom {
+    background-color: #272727;
+    color: white;
+    padding: 20px;
+    text-align: center; 
+}
+
+.carousel-item-custom p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+ol {
+    list-style: none; /* Elimina los números */
+    padding-left: 0; /* Elimina el padding de la lista */
+}
+
+li::before {
+    content: "— "; /* Agrega un guion como viñeta */
+    font-weight: bold;
+    margin-right: 5px; /* Espacio entre el guion y el texto */
+}
+
+li {
+    margin-bottom: 22.4px; /* Ajusta el espacio entre los elementos de la lista */
+}
+
+/*se hacen ajustes para al final despues del gtexto contactanos quitar el espacio en blanco*/
+.color {
+    background-color : #272727;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.color p {
+    margin: 0;
+    padding: 0;
+}
+
+.color-nav {
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.7), /* Color oscuro en el extremo izquierdo */
+        rgba(71, 71, 71, 0.9) 50%, /* Color más claro en el centro */
+        rgba(0, 0, 0, 0.7) /* Color oscuro en el extremo derecho */
+    );
+    
+}
+
+.text-red { 
+    color: red;
+}
